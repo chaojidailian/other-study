@@ -4,13 +4,14 @@
  */
 
 /**
- * @description 传入一个函数fn，会依次传入调用数组的每一项及其索引值以及嗲用数组给fn的形参
- * @param {Function} fn 
+ * @description 传入一个回调函数callbackFn，
+ *               会依次传入调用数组的每一项及其索引值以及嗲用数组给callbackFn的形参
+ * @param {Function} callbackFn 
  */
-Array.prototype.cjForEach = function(fn) {
-  if(typeof fn !== 'function') throw new Error('请传入一个函数')
+Array.prototype.cjForEach = function(callbackFn) {
+  if(typeof callbackFn !== 'function') throw new Error('请传入一个函数')
   for (let i = 0; i < this.length; i++) {
     const item = this[i]
-    fn(item, i, this)
+    callbackFn(item, i, this)
   }
 }
