@@ -48,7 +48,7 @@ function reactive(raw) {
     }
   })
 }
-// defineProperty实现
+// defineProperty实现响应式
 // function reactive(raw) {
 //   for (const key in raw) {
 //     if (Object.hasOwnProperty.call(raw, key)) {
