@@ -10,6 +10,7 @@
  * @returns {Array} 返回扁平化的数组
  */
 function cjFlat(array) {
+  if(!Array.isArray(array)) throw new Error('请传入一个数组')
   return array.reduce((pre, cur) => {
     return Array.isArray(cur) ?
       pre.concat(flat(cur)) : pre.concat(cur)
@@ -22,6 +23,7 @@ function cjFlat(array) {
  * @returns {Array} 返回扁平化的数组
  */
 function cjFlat(array) {
+  if(!Array.isArray(array)) throw new Error('请传入一个数组')
   let result = []
   array.forEach(item => {
     if(Array.isArray(item)) {
