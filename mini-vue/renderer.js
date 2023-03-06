@@ -7,7 +7,7 @@ function h(tag, props, children) {
 }
 
 function mount(vNode, container) {
-  // 1. 创建真实节点，并赋值给vNode
+  // 1. 创建真实Dom，并赋值给vNode
   const el = vNode.el = document.createElement(vNode.tag)
   // 2. 将属性方法设置到节点上
   if (vNode.props) {
