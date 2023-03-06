@@ -6,15 +6,15 @@
 
 /**
  * 
- * @param {Array} fn 
+ * @param {Function} callbackFn 
  * @returns 返回一个经过fn函数处理过的数组
  */
-Array.prototype.cjMap = function(fn) {
-  if(typeof fn !== 'function') throw new Error('请传入一个函数')
+Array.prototype.cjMap = function(callbackFn) {
+  if(typeof callbackFn !== 'function') throw new Error('请传入一个函数')
   let result = []
   for (let i = 0; i < this.length; i++) {
     const item = this[i]
-    result.push(fn(item, i, this))
+    result.push(callbackFn(item, i, this))
   }
   return result
 }
