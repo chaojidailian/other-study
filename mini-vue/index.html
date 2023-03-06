@@ -1,0 +1,42 @@
+<style>
+.color {
+  background: blue;
+}
+</style>
+<div id="app"></div>
+
+<script src="./renderer.js"></script>
+<script src="./reactive.js"></script>
+
+<script>
+  const data = reactive({
+    count: 0
+  })
+  const App = {
+    data,
+    render() {
+      return h('div', {
+        class: 'color',
+        onClick: () => this.data.count++
+      }, `${this.data.count}`)
+    }
+  }
+
+  function mountApp(component, container) {
+    let isMounted = false
+    let prevVDom
+    watchEffect(() => {
+      if (!isMounted) {
+        prevVDom = component.render()
+        mount(prevVDom, container)
+        isMounted = true
+      } else {
+        const nextVDom = component.render()
+        patch(prevVDom, nextVDom)
+        prevVDom = nextVDom
+      }
+    })
+
+  }
+  mountApp(App, document.getElementById('app'))
+</script>
