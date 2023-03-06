@@ -7,15 +7,15 @@
 
 /**
  * 
- * @param {Array} fn 
- * @returns 返回一个经过fn函数处理后结果为true项的数组
+ * @param {Function} callbackFn
+ * @returns 返回一个经过回调函数callbackFn处理后结果为true项的数组
  */
-Array.prototype.cjFilter = function (fn) {
-  if (typeof fn !== 'function') throw new Error('请传入一个函数')
+Array.prototype.cjFilter = function (callbackFn) {
+  if (typeof callbackFn !== 'function') throw new Error('请传入一个函数')
   let result = []
   for (let i = 0; i < this.length; i++) {
     const item = this[i]
-    fn(item, i, this) ? result.push(item) : ''
+    callbackFn(item, i, this) ? result.push(item) : ''
   }
   return result
 }
