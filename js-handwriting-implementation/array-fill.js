@@ -1,7 +1,6 @@
 // 任务：实现数组填充fill方法
 /** 
- * 主要需要处理的点： 1. start是负数或者大于数组长度
- *                  2. end是负数或者大于数组长度
+ * 主要需要处理的点： 1. start、end是负数或者大于数组长度
  *                  3. start大于end
  *                  4. start和end不是数字类型
  * 
@@ -17,8 +16,8 @@
  * @returns {Array} 返回填充后的数组 
  */
 Array.prototype.cjFill = function (value, start, end) {
-  const arrLength = this.length // 7
   debugger;
+  const arrLength = this.length // 7
   start  = Number.parseInt(start) ? start : 0
   end  = Number.parseInt(end) ? end : arrLength
   if (start < 0) {

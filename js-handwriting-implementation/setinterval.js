@@ -1,0 +1,1 @@
+// 使用settimeout实现setinterval

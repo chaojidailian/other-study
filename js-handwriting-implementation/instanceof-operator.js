@@ -1,0 +1,2 @@
+// instanceof操作符
+
