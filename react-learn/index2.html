@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="module">
+      let OtherComponent = React.lazy(() => import("./text.js"))
+    </script>
+    <script type="text/babel">
+      // import React, { useState, useEffect } from "react"
+
+      function Counter() {
+        // 声明一个名为count的状态变量，初始值为0
+        const [count, setCount] = React.useState(0)
+
+        // 使用useEffect在组件挂载和更新时执行一些操作
+        React.useEffect(() => {
+          // 更新页面标题为当前计数值
+          console.log("aa")
+          document.title = `You clicked ${count} times`
+        })
+
+        return (
+          <div>
+            <p>You clicked {count} times</p>
+            // 点击按钮时调用setCount函数，更新状态值
+            <button onClick={() => setCount(count + 1)}>Click me</button>
+          </div>
+        )
+      }
+      function Main() {
+        return <Counter />
+      }
+      // let root = React.createRoot(document.getElementById('app'))
+      // root.render(new App().render())
+      ReactDOM.render(Main(), document.getElementById("app"))
+      // ReactDOM.render(new App().render(), document.getElementById("app"))
+    </script>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>react</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- 使用type="text/babel"指定使用babel编译 -->
+    <script type="text/babel">
+      function ProductCategoryRow(props) {}
+      function ProductRow(props) {}
+      function ProductTable(props) {
+        let obj = {};
+        props.productList.forEach((item) => {
+          if (!obj[item.category]) {
+            obj[item.category] = [];
+          }
+          obj[item.category].push(item);
+        });
+        return (
+          <div>
+            {Object.values(obj).map((categoryItem, index) => (
+              <div key={categoryItem[index].category}>
+                <strong>{categoryItem[index].category}</strong>
+                {categoryItem.map((product) => (
+                  <p key={product.id}>
+                    {product.name}---{product.price}
+                  </p>
+                ))}
+              </div>
+            ))}
+          </div>
+        );
+      }
+      function SearchBar(props) {
+        return (
+          <div>
+            <input
+              type="text"
+              value={props.searchText}
+              onChange={props.searchTextChange}
+            />
+            <label htmlFor="checkboxX">Only show products in stock</label>
+            <input
+              type="checkbox"
+              id="checkboxX"
+              value={props.isStocked}
+              onChange={props.checkboxChange}
+            />
+          </div>
+        );
+      }
+      class FilterableProductTable extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            isStocked: false,
+            searchText: "",
+            productList: [
+              {
+                id: 1,
+                category: "Sporting Goods",
+                name: "Football1",
+                price: "$49.99",
+                stocked: true,
+              },
+              {
+                id: 2,
+                category: "Sporting Goods",
+                name: "Football2",
+                price: "$49.99",
+                stocked: true,
+              },
+              {
+                id: 3,
+                category: "Sporting Goods",
+                name: "Football3",
+                price: "$49.99",
+                stocked: false,
+              },
+              {
+                id: 4,
+                category: "Sporting Goods",
+                name: "BaseBall1",
+                price: "$9.99",
+                stocked: true,
+              },
+              {
+                id: 5,
+                category: "Sporting Goods",
+                name: "BaseBall2",
+                price: "$9.99",
+                stocked: false,
+              },
+              {
+                id: 6,
+                category: "Sporting Goods",
+                name: "Basketball",
+                price: "$29.99",
+                stocked: true,
+              },
+              {
+                id: 7,
+                category: "Electronics",
+                name: "iPod Touch",
+                price: "$99.99",
+                stocked: false,
+              },
+              {
+                id: 8,
+                category: "Electronics",
+                name: "iPhone5",
+                price: "$399.99",
+                stocked: false,
+              },
+              {
+                id: 9,
+                category: "Electronics",
+                name: "iPhone7",
+                price: "$399.99",
+                stocked: true,
+              },
+              {
+                id: 10,
+                category: "Electronics",
+                name: "Nexus7",
+                price: "$199.99",
+                stocked: true,
+              },
+            ],
+          };
+          this.handlerSearchChange = this.handlerSearchChange.bind(this);
+          this.handlerCheckboxChange = this.handlerCheckboxChange.bind(this);
+        }
+        handlerSearchChange(e) {
+          this.setState({
+            searchText: e.target.value,
+          });
+        }
+        handlerCheckboxChange(e) {
+          this.setState({
+            isStocked: e.target.checked,
+          });
+        }
+        render() {
+          let searchText = this.state.searchText;
+          let productList = this.state.productList;
+          let isStocked = this.state.isStocked;
+          let filterProductList = productList.filter((item) => {
+            return (
+              item.stocked === isStocked &&
+              item.name.toLowerCase().includes(searchText.toLowerCase())
+            );
+          });
+          return (
+            <div>
+              <SearchBar
+                searchText={searchText}
+                searchTextChange={this.handlerSearchChange}
+                isStocked={isStocked}
+                checkboxChange={this.handlerCheckboxChange}
+              />
+              <ProductTable productList={filterProductList} />
+            </div>
+          );
+        }
+      }
+      function App() {
+        return (
+          <div>
+            <FilterableProductTable />
+          </div>
+        );
+      }
+      ReactDOM.render(App(), document.getElementById("app"));
+    </script>
+  </body>
+</html>
