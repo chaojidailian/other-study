@@ -16,7 +16,7 @@ input.addEventListener('keyup', (e) => {
   if (e.keyCode === 13) {
     getWeather()
   }
-})
+}) 
 
 async function getWeather() {
   const response = await fetch(api + `&city=${input.value.trim()}`)
