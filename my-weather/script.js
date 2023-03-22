@@ -1,6 +1,6 @@
 // const api = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${apiKey}`
 const api =
-  'https://v0.yiketianqi.com/api?unescape=1&version=v63&appid=61634544&appsecret=YM5n0zTA'
+  'https://v0.yiketianqi.com/api?unescape=1&version=v63&appid=&appsecret='
 const input = document.querySelector('.city-search input')
 const btn = document.querySelector('.city-search button')
 const errorInfo = document.querySelector('.city-search-error')
@@ -57,7 +57,5 @@ async function getWeather() {
     console.log(data)
     errorInfo.textContent = data.errmsg
     errorInfo.style.display = 'inline'
-  } else {
-    errorInfo.textContent = `接口请求异常`
   }
 }
