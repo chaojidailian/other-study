@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>天气</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <main class="weather-box">
+      <div class="city-search">
+        <input type="search" placeholder="请输入要查询的城市" />
+        <button class="button-search">
+          <img src="./img/search-icon.png" alt="搜索图标" />
+        </button>
+      </div>
+      <span class="city-search-error"></span>
+      <div class="show-weather">
+        <div class="city-weather">
+          <img src="" />
+          <h2 class="temp"></h2>
+          <h2 class="city"></h2>
+        </div>
+        <div class="detail-weather">
+          <div class="detail">
+            <img src="./img/humidity.png" alt="湿度图标" />
+            <div>
+              <span>湿度</span>
+              <span class="humidity"></span>
+            </div>
+          </div>
+          <div class="detail">
+            <img src="./img/wind-force.png" alt="风力图标" />
+            <div>
+              <span>风力</span>
+              <span class="wind-force"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
